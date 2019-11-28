@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 import dash from './pages/dash'
 import login from "./pages/login"
+import register from "./pages/register"
 
 const PrivateRoute = ({ component: Component, ...rest}) => (
   <Route {...rest} render={props => {
@@ -17,6 +18,7 @@ function App() {
       <Switch>
         <PrivateRoute path="/" exact component={dash} />
         <Route path="/login" component={login} />
+        <Route path="/register" component={register} />
       </Switch>
     </BrowserRouter>
   )
