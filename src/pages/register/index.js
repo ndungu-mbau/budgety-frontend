@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { Link } from "react-router-dom"
 import Alert from "../../components/alert"
 
 import { post } from "../../utils/requests"
@@ -70,7 +71,7 @@ class Login extends Component{
                   <button class="btn btn-danger btn-block btn-round" onClick={() => this.onSubmit(this.state)}>Register</button>
                 </div>
                 <div class="forgot">
-                  <a href="/login" class="btn btn-link btn-danger">Log In</a>
+                  <Link to="/login" class="btn btn-link btn-danger">Log In</Link>
                 </div>
               </div>
             </div>

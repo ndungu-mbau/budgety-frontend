@@ -12,7 +12,10 @@ export default props => (
       <div className="collapse navbar-collapse" id="navbar-primary">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
-            <a className="nav-link" href="/logout"><i className="nc-icon nc-settings-gear-65" aria-hidden="true"></i>&nbsp;Log Out</a>
+            <button className="btn btn-link nav-link" onClick={() => {
+              localStorage.removeItem('token')
+              window.location = "#/login"
+            }}><i className="nc-icon nc-settings-gear-65" aria-hidden="true"></i>&nbsp;Log Out</button>
           </li>
         </ul>
       </div>
