@@ -1,3 +1,5 @@
+import axios from "axios"
+
 const { NODE_ENV } = process.env
 let API
 
@@ -7,13 +9,18 @@ if(NODE_ENV === "development"){
   API = "https://budgety-api.herokuapp.com"
 }
 
-const get = async path => fetch(`${API}${path}`, { credentials: "include" }).then(res => res.json())
+const get = path => axios.get(`${API}${path}`, {
+  headers : {
+    authorization: localStorage.getItem('token')
+  }
+})
 
-const post = async ({ path, data }) => {
-  return fetch(`${API}${path}`,{
-    method:'post',
-    credentials:"include",
-    body: JSON.stringify(data)
+const post = (path, data) => {
+  return axios.post(`${API}${path}`, data, {
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: localStorage.getItem('token')
+    }
   })
 }
 
