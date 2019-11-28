@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
 
 import dash from './pages/dash'
 import login from "./pages/login"
@@ -14,13 +14,13 @@ const PrivateRoute = ({ component: Component, ...rest}) => (
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Switch>
         <PrivateRoute path="/" exact component={dash} />
         <Route path="/login" component={login} />
         <Route path="/register" component={register} />
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
