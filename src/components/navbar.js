@@ -3,7 +3,7 @@ import React from "react"
 export default props => (
   <nav className="navbar navbar-expand-lg bg-primary">
     <div className="container">
-      <a className="navbar-brand" href="/">Budgety</a>
+      <a className="navbar-brand" href="/">Hello, {props.user.username}</a>
       <button className="navbar-toggler navbar-toggler-right burger-menu" type="button" data-toggle="collapse" data-target="#navbar-primary" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-bar"></span>
         <span className="navbar-toggler-bar"></span>

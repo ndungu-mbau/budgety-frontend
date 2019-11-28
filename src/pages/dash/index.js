@@ -10,16 +10,17 @@ class Home extends Component{
   state = {
     incomes:[],
     expenses:[],
-    total:0
+    me:{}
   }
 
   async componentDidMount(){
+    const { data : me } = await get('/auth/me')
     const { data: entries } = await get('/entries')
 
     const incomes = entries.filter(entry => entry.type === "income")
     const expenses = entries.filter(entry => entry.type === "expense")
 
-    this.setState({ incomes, expenses })
+    this.setState({ incomes, expenses, me })
   }
 
   onSave = async entry => {
@@ -40,7 +41,7 @@ class Home extends Component{
   }
 
   render(){
-    const { incomes, expenses } = this.state
+    const { incomes, expenses, me } = this.state
 
     const totalIncome = incomes.reduce((sum, inc) => sum += inc.amount, 0)
     const totalExpenses = expenses.reduce((sum, exp) => sum += exp.amount, 0)
@@ -48,18 +49,21 @@ class Home extends Component{
     const total = totalIncome - totalExpenses
     return(
       <>
-      <Navbar/>
-      <div className="container">
-        <div className="row">
-          <h1 className="text-center">BUDGETY</h1>
-          <br/>
-          <hr/>
-          <br/>
-          <h2>Total: {total}</h2>
-        </div>
+      <Navbar user={me}/>
+      <div className="container mt-5">
         <div className="row">
           <div className="col-6 offset-3">
-            <Form onSave={this.onSave} />
+            <div className="card">
+              <div className={`card-header bg-${total > 0 ? "success" : "danger"}`}>
+                <h4 className="text-light">Welcome to Budgety</h4>
+              </div>
+              <div className="card-body">
+                <h1>Your total is : {total}</h1>
+              </div>
+              <div className="card-footer">
+                <Form onSave={this.onSave} />
+              </div>
+            </div>
           </div>
         </div>
         <br/>
