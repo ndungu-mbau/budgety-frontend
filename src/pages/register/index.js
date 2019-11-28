@@ -25,8 +25,8 @@ class Login extends Component{
     if(!res.data.ok){
       this.setState({ err : res.data })
     } else {
-      localStorage.setItem('token', res.data.token)
-      this.props.history.go('/')
+      window.localStorage.setItem('token', res.data.token)
+      this.props.history.push('/')
     }
   }
 
