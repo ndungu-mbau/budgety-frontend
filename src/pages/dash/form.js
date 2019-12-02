@@ -4,7 +4,18 @@ class Form extends Component{
   state = {
     description:'',
     amount : 0,
-    type : 'income'
+    type : ''
+  }
+
+  onSave = () => {
+    if(this.state.type !== ""){
+      this.props.onSave(this.state)
+      this.setState({
+        description:'',
+        amount:0,
+        type:''
+      })
+    }
   }
 
   render(){
@@ -26,13 +37,14 @@ class Form extends Component{
           <div className="col">
             <div class="form-group">
               <select class="form-control" onChange={e => this.setState({ type: e.target.value })}>
+                <option value="">Select Type</option>
                 <option value="income">Income</option>
                 <option value="expense">Expense</option>
               </select>
             </div>
           </div>
           <div className="col">
-            <button class={`btn btn-${this.state.type === "income" ? "success" : "danger"}`} onClick={() => this.props.onSave(this.state)}>Save</button>
+            <button class={`btn btn-${this.state.type === "income" ? "success" : this.state.type === "expense" ? "danger" : "default"}`} onClick={this.onSave}>Save</button>
           </div>
         </div>
       </>
