@@ -6,6 +6,8 @@ import Form from "./form"
 
 import { get, post } from "../../utils/requests"
 
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
 class Home extends Component{
   state = {
     incomes:[],
@@ -58,7 +60,9 @@ class Home extends Component{
                 <h4 className="text-light">Welcome to Budgety</h4>
               </div>
               <div className="card-body">
-                <h1>Your total is : {total}</h1>
+                <h1>Your total for {months[new Date().getMonth()]} is : {total}</h1>
+                <h4>Total Incomes : {totalIncome}</h4>
+                <h4>Total Expenses : {totalExpenses}</h4>
               </div>
               <div className="card-footer">
                 <Form onSave={this.onSave} />
@@ -71,7 +75,7 @@ class Home extends Component{
         <div className="row">
           <div className="col-6">
             <Table
-              type="incomes"
+              className="bg-success"
               headers={[{
                 label:"Description",
                 key:"description"
@@ -84,7 +88,7 @@ class Home extends Component{
           </div>
           <div className="col-6">
             <Table
-              type="expenses"
+              className="bg-danger"
               headers={[{
                 label:"Description",
                 key:"description"
