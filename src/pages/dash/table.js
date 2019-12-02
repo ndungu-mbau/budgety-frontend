@@ -2,7 +2,7 @@ import React from "react"
 
 export default props => (
   <table class="table table-striped">
-  <thead class={`bg-${props.type === "incomes" ? "success" : "danger"}`}>
+  <thead className={props.className}>
     <tr>
       {props.headers.map(header => (
         <th>{header.label}</th>
